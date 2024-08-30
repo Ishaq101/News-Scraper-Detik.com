@@ -1,23 +1,24 @@
-# Detik.com News Scraping 
-<br>
-<b>Requirement:</b><br>
-- python 3.10.14<br>
-- installed packages (use requirements.txt)
-<br><br>
-<b>Scope:</b><br>
-- Currently, this engine is only build for detik.com web
-<br><br>
-<b>Feature:</b><br>
-- News scraping with input is date range and keywords search
+# Detik.com News Scraping
+
+## Requirement:
+- Python 3.10.14
+- Installed packages (use `requirements.txt`)
+
+## Scope:
+- Currently, this engine is only built for the detik.com website
+
+## Features:
+- News scraping with input as date range and keywords search
 - Optimized with asynchronous flow
-<br><br>
-<b>Usage:</b><br>
+
+## Usage:
 - News dataset collection (including news metadata like title, published date, news keywords, authors)
-<br><br>
-<b>How to use:</b><br>
-- prepare your environment by installing the requirements <br>
-- run this command on your env terminal <br>
-    > command: `python run_scraping.py <from_date> <to_date> <keyword[s]>` <br>
-    > example: `python run_scraping.py 10/02/2024 30/08/2024 pangan` <br>
-    > example: `python run_scraping.py 10/02/2024 30/08/2024 "pangan, BBM, pasar  induk"` <br>
-- the output will be exported into parquet file <br>
+
+## How to Use:
+1. Prepare your environment by installing the requirements.
+2. Run this command on your environment terminal:
+   - **Command:** `python run_scraping.py`
+   - **Example:** 
+     - `python run_scraping.py --from_date="29/08/2024" --to_date="30/08/2024" --keyword=[pangan]`
+     - `python run_scraping.py --from_date="10/02/2024" --to_date="30/08/2024" --keyword=[pangan, BBM, pasar induk]`
+3. The output will be exported into a Parquet file.
