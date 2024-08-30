@@ -19,6 +19,6 @@
 2. Run this command on your environment terminal:
    - **Command:** `python run_scraping.py`
    - **Example:** 
-     - `python run_scraping.py 10/02/2024 30/08/2024 pangan`
-     - `python run_scraping.py 10/02/2024 30/08/2024 "pangan, BBM, pasar induk"`
+     - `python run_scraping.py --from_date="29/08/2024" --to_date="30/08/2024" --keyword=[pangan]`
+     - `python run_scraping.py --from_date="10/02/2024" --to_date="30/08/2024" --keyword=[pangan, BBM, pasar induk]`
 3. The output will be exported into a Parquet file.
