@@ -118,15 +118,15 @@ def get_all_news(urls):
     print(f"Finished collect all url, total : {len(news_all)}, {end_time - start_time:.2f}s")
     return news_all
 
+def list_of_strings(arg):
+    return arg.split(',')
 
 if __name__ == "__main__":
     st = time.time()
-    parser = argparse.ArgumentParser(
-        description="Script that adds 3 numbers from CMD"
-    )
+    parser = argparse.ArgumentParser()
     parser.add_argument("--from_date", required=True, type=str)
     parser.add_argument("--to_date", required=True, type=str)
-    parser.add_argument("--keyword", required=True, type=list[str])
+    parser.add_argument('--keyword', required=True, type=list_of_strings)
     args = parser.parse_args()
 
     from_date = args.from_date
