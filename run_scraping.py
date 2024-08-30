@@ -18,7 +18,6 @@ def datelist_generator(from_date,to_date,format_output="%d/%m/%Y"):
     dates = []
     step = timedelta(days=1)
     while from_date<=to_date:
-        # print(from_date)
         dates.append(from_date.strftime(format_output))
         from_date+=step
     return dates
@@ -94,7 +93,7 @@ def get_news(url):
     meta_description = article.meta_description
     meta_keywords = ", ".join(article.meta_keywords)
     text = title+'\n'+article.text
-    return {
+    news_dict = {
             "authors" : authors,
             "title" : title,
             "publish_date" : publish_date,
@@ -103,6 +102,7 @@ def get_news(url):
             "meta_keywords" : meta_keywords,
             "text" : text,
         }
+    return news_dict
 
 def get_all_news(urls):
     start_time = timeit.default_timer()
@@ -113,9 +113,8 @@ def get_all_news(urls):
     end_time = timeit.default_timer()
     news_all = []
     for news in result_task:
-        news_all.extend(news)
-    news_all = list(set(np.array(news_all)))
-    print(f"Finished collect all url, total : {len(news_all)}, {end_time - start_time:.2f}s")
+        news_all.extend([news])
+    print(f"Finished collect all news, total : {len(news_all)}, {end_time - start_time:.2f}s")
     return news_all
 
 def list_of_strings(arg):
@@ -144,7 +143,9 @@ if __name__ == "__main__":
     uniq_urls = list(set(all_keywords_urls_list))
     print(f"Unique url collected: {len(uniq_urls)}")
 
-    df_news = pd.DataFrame(get_all_news(uniq_urls))
+    list_of_dict = get_all_news(uniq_urls)
+    df_news = pd.DataFrame(list_of_dict)
+    df_news = df_news.drop_duplicates().reset_index(drop=True)
     df_news.to_parquet('detiknews.parquet',engine='fastparquet')
     print(f"/============/ Finished scraping news, rt:{time.time()-st}s /============/")
 
